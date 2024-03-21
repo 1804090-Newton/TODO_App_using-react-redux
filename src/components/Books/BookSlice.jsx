@@ -4,6 +4,7 @@ const initialBooks = {
   books: [
     { id: 1, title: "Beautiful Life", author: "Sourav vai", reading_status: false },
     { id: 2, title: "redux er hate khori", author: "Newton", reading_status: false },
+    { id: 3, title: "Software Architecture", author: "Mark Andrew Richards and Neal Ford", reading_status: false}
   ],
 };
 

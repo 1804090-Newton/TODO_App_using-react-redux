@@ -1,39 +1,62 @@
-
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { updateBook } from './BookSlice';
+import { TextField, Button, Typography, Container, Grid, Box } from '@mui/material';
 
-const EditBook=()=>{
-    const dispatch=useDispatch();
-    const location=useLocation();
-    const navigate=useNavigate();
-    const[id, setId]=useState(location.state.id);
-    const[title,setTitle]=useState(location.state.title);
-    const[author, setAuthor]=useState(location.state.author);
+const EditBook = () => {
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [id, setId] = useState(location.state.id);
+    const [title, setTitle] = useState(location.state.title);
+    const [author, setAuthor] = useState(location.state.author);
 
-    const handleSubmit=(e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(updateBook({id,title,author}))
-        navigate("/show-books", {replace:true});
+        dispatch(updateBook({ id, title, author }));
+        navigate("/show-books", { replace: true });
     }
-    return(
 
-        <div>
-            <h2> Edit book</h2>
-            <form  onSubmit={handleSubmit}>
-            <div className="form-field">
-                    <label htmlFor='title'>Title: </label>
-                    <input type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
-                </div>
-
-                <div className="form-field">
-                    <label htmlFor='author'>Author: </label>
-                    <input type="text" id="author" name="author" value={author} onChange={(e) => setAuthor(e.target.value)} required />
-                </div>
-                <button type="submit">update Book</button>
-            </form>
-        </div>
+    return (
+        <Container maxWidth="md">
+            <Box sx={{ mt: 4 }}>
+                <Typography variant="h4" align="center" gutterBottom>
+                    Edit Book
+                </Typography>
+                <form onSubmit={handleSubmit}>
+                    <Grid container spacing={2} justifyContent="center">
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                fullWidth
+                                id="title"
+                                label="Title"
+                                variant="outlined"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                required
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                fullWidth
+                                id="author"
+                                label="Author"
+                                variant="outlined"
+                                value={author}
+                                onChange={(e) => setAuthor(e.target.value)}
+                                required
+                            />
+                        </Grid>
+                        <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                            <Button type="submit" variant="contained" color="primary">
+                                Update Book
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </form>
+            </Box>
+        </Container>
     );
 };
 
