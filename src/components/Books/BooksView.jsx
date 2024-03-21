@@ -1,7 +1,8 @@
-
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBook, statusBook } from './BookSlice';
 import { Link } from 'react-router-dom';
+import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@mui/material';
 
 const BooksView = () => {
     const books = useSelector((state) => state.booksReducer.books);
@@ -14,47 +15,46 @@ const BooksView = () => {
     const handleStatus = (id) => {
         dispatch(statusBook(id));
     };
-
     
     return (
         <div>
-            <h2>List of Books</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Reading Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <h2> Todo app for listing Reading book</h2>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>ID</TableCell>
+                        <TableCell>Title</TableCell>
+                        <TableCell>Author</TableCell>
+                        <TableCell>Reading Status</TableCell>
+                        <TableCell>Action</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
                     {books && books.map((book) => {
                         const { id, title, author, reading_status } = book;
                         return (
-                            <tr key={id}>
-                                <td>{id}</td>
-                                <td>{title}</td>
-                                <td>{author}</td>
-                                <td>
+                            <TableRow key={id}>
+                                <TableCell>{id}</TableCell>
+                                <TableCell>{title}</TableCell>
+                                <TableCell>{author}</TableCell>
+                                <TableCell>
                                     {reading_status ? (
-                                        <button onClick={() => { handleStatus(id) }}>Completed</button>
+                                        <Button onClick={() => { handleStatus(id) }} variant="contained" color="primary">Completed</Button>
                                     ) : (
-                                        <button onClick={() => { handleStatus(id) }}>Pending</button>
+                                        <Button onClick={() => { handleStatus(id) }} variant="contained" color="secondary">Pending</Button>
                                     )}
-                                </td>
-                                <td>
+                                </TableCell>
+                                <TableCell>
                                     <Link to="/edit-book" state={{ id, title, author }}>
-                                        <button>Edit</button>
+                                        <Button variant="contained">Edit</Button>
                                     </Link>
-                                    <button onClick={() => { handleDeleteBook(id) }}>Delete</button>
-                                </td>
-                            </tr>
+                                    <Button onClick={() => { handleDeleteBook(id) }} variant="contained" color="error">Delete</Button>
+                                </TableCell>
+                            </TableRow>
                         );
                     })}
-                </tbody>
-            </table>
+                </TableBody>
+            </Table>
         </div>
     );
 };
