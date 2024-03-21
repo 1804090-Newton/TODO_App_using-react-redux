@@ -9,7 +9,7 @@ const Navbar = () => {
                 <Typography variant="h6" component={Link} to="/" style={{ textDecoration: 'none', color: 'inherit', flexGrow: 1 }}>
                     TODO APP
                 </Typography>
-                <Button component={Link} to="/" color="inherit" variant="text">
+                <Button component={Link} to="/TODO_App_using-react-redux" color="inherit" variant="text">
                     Home
                 </Button>
                 <Button component={Link} to="/show-books" color="inherit" variant="text">

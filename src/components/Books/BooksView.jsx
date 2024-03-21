@@ -19,7 +19,7 @@ const BooksView = () => {
     return (
         <Container maxWidth="lg">
             <Typography variant="h4" align="center" gutterBottom style={{ marginTop: '40px' }}>
-                Todo app for listing Reading books
+            Todo App for Listing and Reading Books
             </Typography>
             <Table>
                 <TableHead>
