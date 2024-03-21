@@ -5,6 +5,7 @@ import Pagenotfound from '../pages/Pagenotfound';
 import Navbar from '../Header/Navbar';
 import BooksView from '../components/Books/BooksView';
 import AddBook from '../components/Books/AddBook';
+import EditBook from '../components/Books/EditBook';
 
 const Index = () => {
   return (
@@ -14,7 +15,9 @@ const Index = () => {
         <Route path="/" element={<Home />} /> 
         <Route path="/show-books" element={<BooksView/> }/>
         <Route path="add-book" element={<AddBook/>} />
+        <Route path="/edit-book" element={<EditBook/> }/>
         <Route path="*" element={<Pagenotfound />}/>
+        
       </Routes>
     </BrowserRouter>
   );
