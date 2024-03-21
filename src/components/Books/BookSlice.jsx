@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialBooks = {
   books: [
-    { id: 1, title: "Beautiful Life", author: "Sourav vai" },
-    { id: 2, title: "redux er hate khori", author: "Newton" },
+    { id: 1, title: "Beautiful Life", author: "Sourav vai", reading_status: false },
+    { id: 2, title: "redux er hate khori", author: "Newton", reading_status: false },
   ],
 };
 
@@ -27,8 +27,15 @@ export const bookSlice = createSlice({
         bookToUpdate.author = author;
       }
     },
+    statusBook: (state, action) => {
+      const id = action.payload;
+      const bookToUpdate = state.books.find(book => book.id === id);
+      if (bookToUpdate) {
+        bookToUpdate.reading_status = !bookToUpdate.reading_status;
+      }
+    },
   },
 });
 
-export const { showBooks, addBook, deleteBook, updateBook } = bookSlice.actions;
+export const { showBooks, addBook, deleteBook, updateBook, statusBook } = bookSlice.actions;
 export default bookSlice.reducer;
