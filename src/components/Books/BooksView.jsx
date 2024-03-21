@@ -1,12 +1,12 @@
-import React from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteBook, statusBook } from './BookSlice'; 
+import { deleteBook, statusBook } from './BookSlice';
 import { Link } from 'react-router-dom';
 
 const BooksView = () => {
     const books = useSelector((state) => state.booksReducer.books);
     const dispatch = useDispatch();
-
+    
     const handleDeleteBook = (id) => {
         dispatch(deleteBook(id));
     };
@@ -15,9 +15,10 @@ const BooksView = () => {
         dispatch(statusBook(id));
     };
 
+    
     return (
         <div>
-            <h2>Todo List of Books</h2>
+            <h2>List of Books</h2>
             <table>
                 <thead>
                     <tr>

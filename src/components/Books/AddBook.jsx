@@ -8,7 +8,7 @@ const AddBook = () => {
     const [author, setAuthor] = useState("");
     const dispatch = useDispatch();
     const navigate=useNavigate();
-
+    const [nextId, setNextId] = useState(3); 
 
     
 
@@ -20,6 +20,13 @@ const AddBook = () => {
         dispatch(addBook(book));
         navigate("/show-books", {replace:true});
     }
+
+    const handleAddBook = () => {
+       
+        const newId = nextId;
+        setNextId(prevId => prevId + 1); 
+        dispatch(addBook({ id: newId, title, author, reading_status}));
+    };
 
     return (
         <div>
@@ -34,7 +41,7 @@ const AddBook = () => {
                     <label htmlFor='author'>Author: </label>
                     <input type="text" id="author" name="author" value={author} onChange={(e) => setAuthor(e.target.value)} required />
                 </div>
-                <button type="submit">Add Book</button>
+                <button type="submit"  onClick={handleAddBook} >Add Book</button>
             </form>
         </div>
     );
